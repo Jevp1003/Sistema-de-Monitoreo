@@ -1,0 +1,168 @@
+
+/* ... Estilos base ... */
+body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+.main-container { display: flex; height: 100vh; width: 100%; }
+
+#sidebar {
+    width: 300px; min-width: 300px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+    display: flex; flex-direction: column;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+#sidebar h2 { 
+    text-align: center; color: #333; padding: 15px; margin: 0; 
+    background: #fff; border-bottom: 1px solid #ddd; 
+}
+
+/* === MENÚ DE BOTONES === */
+.menu-bar {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-btn {
+    flex: 1; /* Ahora se dividirán en 3 partes iguales */
+    padding: 10px; /* Un poco menos de padding para que quepan bien */
+    border: none;
+    background: #e9ecef;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #555;
+    transition: 0.3s;
+    border-bottom: 3px solid transparent;
+}
+
+.menu-btn:hover { background: #dee2e6; }
+
+/* Clase para el botón activo */
+.menu-btn.active {
+    background: #fff;
+    color: #007bff;
+    border-bottom: 3px solid #007bff;
+}
+
+/* === CONTENEDORES DE VISTA === */
+.content-view {
+    padding: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+    background: white;
+}
+
+.info-box {
+    background: #e7f1ff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    color: #004085;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* === CONTROLES DE HISTORIAL === */
+.history-controls label { font-size: 0.85em; font-weight: bold; display: block; margin-top: 5px; }
+.history-controls select, .history-controls input {
+    width: 100%; padding: 8px; margin-bottom: 10px;
+    border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+}
+.history-btn { width: 100%; background-color: #28a745; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.history-btn:hover { background-color: #218838; }
+.clear-btn { width: 100%; background-color: #6c757d; color: white; border: none; padding: 8px; border-radius: 4px; cursor: pointer; margin-top: 5px; }
+
+/* Botones y Tarjetas */
+.action-btn { background-color: #007bff; color: white; padding: 8px; border-radius: 4px; cursor: pointer; margin-top: 5px; font-weight: bold; display: inline-block; width: 100%; box-sizing: border-box;}
+.user-card { background: white; margin-bottom: 10px; padding: 12px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 6px solid #ccc; cursor: pointer; border: 1px solid #eee; }
+.user-card:hover { transform: translateX(5px); background-color: #fffef0; }
+.user-name { font-weight: bold; font-size: 1.1em; display: block; }
+.user-info { font-size: 0.85em; color: #666; }
+
+#map { 
+    flex-grow: 1; 
+    height: 100%; 
+    width: 100%; 
+}
+
+/* Botón salir */
+.btn-salir {
+    margin-top: auto;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 15px;
+    font-size: 16px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+@media (max-width: 900px) {
+    
+    /* 1. CAMBIAR DIRECCIÓN: Poner uno encima del otro */
+    body {
+        flex-direction: column-reverse !important; /* El !important fuerza el cambio */
+    }
+
+    /* 2. EL PANEL (Ahora abajo) */
+    #sidebar {
+        width: 100% !important;   /* Ancho total */
+        height: 35vh !important;  /* 35% de la altura de la pantalla */
+        flex-direction: row;      /* Opcional: Para que los botones se pongan al lado si quieres */
+        overflow-y: auto;         /* Scroll si no cabe todo */
+    }
+
+    /* 3. EL MAPA (Ahora arriba) */
+    #map {
+        width: 100% !important;
+        height: 65vh !important;  /* 65% de la altura restante */
+    }
+}
+
+/* --- Estilos para las Lupas de Ayuda (Tooltips) --- */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: help; /* Cambia el cursor para indicar ayuda */
+    margin-left: 8px;
+    font-size: 1.1em;
+}
+
+/* El texto oculto (el recuadro negro) */
+.tooltip-text {
+    visibility: hidden;
+    width: 220px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 10px;
+    position: absolute;
+    z-index: 1000;
+    
+    /* Posición: Arriba del ícono */
+    top: 135%;
+    bottom: auto; 
+    left: 10%; 
+    margin-left: -25px; /* Centrar el recuadro */
+    
+    /* Efecto de desvanecimiento */
+    opacity: 0; 
+    transition: opacity 0.3s;
+    
+    /* Fuente normal para el texto de ayuda */
+    font-weight: normal;
+    font-size: 0.85rem;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    line-height: 1.4;
+}
+
+/* Mostrar el texto al pasar el mouse */
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
