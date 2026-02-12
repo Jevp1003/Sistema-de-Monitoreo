@@ -1,0 +1,90 @@
+body { font-family: 'Segoe UI', sans-serif; background: #f4f4f9; padding: 20px; }
+.container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+h2 { text-align: center; color: #333; }
+
+/* Tabla */
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+th { background-color: #007bff; color: white; }
+tr:hover { background-color: #f1f1f1; }
+
+/* Formulario */
+.form-group { display: flex; gap: 10px; margin-bottom: 20px; padding: 15px; background: #e9ecef; border-radius: 5px; }
+input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; flex: 1; }
+
+/* Botones Generales */
+button { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-add { background: #28a745; color: white; }
+.btn-edit { background: #ffc107; color: #333; }
+.btn-delete { background: #dc3545; color: white; }
+.btn-back { background: #6c757d; color: white; margin-bottom: 15px; }
+
+/* Botón Ojo (Ver contraseña) */
+.btn-view { background: #17a2b8; color: white; margin-right: 5px; }
+
+button:hover { opacity: 0.9; }
+
+/* === VENTANA MODAL (IDÉNTICA AL LOGIN) === */
+#modal-check {
+display: none; position: fixed; 
+top: 0; left: 0; width: 100%; height: 100%;
+background-color: rgba(0,0,0,0.5); 
+justify-content: center; align-items: center; z-index: 1000;
+}
+.modal-content {
+background: white; padding: 20px; border-radius: 8px;
+width: 300px; text-align: center;
+box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.modal-btns { display: flex; gap: 10px; margin-top: 15px; justify-content: center; }
+.btn-confirm { background: #28a745; color: white; }
+.btn-cancel-m { background: #6c757d; color: white; }
+
+@media (max-width: 768px) {
+/* 1. Ocultar los encabezados de la tabla */
+thead {
+    display: none;
+}
+
+/* 2. Convertir cada fila en una "Tarjeta" */
+tr {
+    display: block;
+    margin-bottom: 15px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* 3. Convertir cada celda en un renglón de la tarjeta */
+td {
+    display: block;
+    text-align: right; /* Alinea el valor a la derecha */
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%; /* Espacio para poner una etiqueta simulada si quisieras */
+}
+
+td:last-child {
+    border-bottom: none;
+}
+
+/* Opcional: Ajustar el ancho de las columnas para que ocupen todo */
+td::before {
+    /* Aquí podrías poner el nombre de la columna con CSS avanzado, 
+    pero por ahora lo dejaremos simple */
+    content: attr(data-label); 
+    float: left;
+    font-weight: bold;
+}
+}
+
+@media (max-width: 600px) {
+/* Asumiendo que el título y botón están en un div contenedor */
+.header-container {
+    flex-direction: column; /* Apilar verticalmente */
+    align-items: flex-start; /* Alinear a la izquierda */
+    gap: 10px; /* Espacio entre título y botón */
+}
+}

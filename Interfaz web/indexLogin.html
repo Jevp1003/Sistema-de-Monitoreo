@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Seguro - Sistema Monitoreo</title>
+    <link rel="stylesheet" href="stilesLogin.css"/>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>🔒 Control de Acceso</h2>
+    
+        <label>
+            Usuario:
+            <span class="tooltip-container">
+                ❓ <span class="tooltip-text">Ingresa tu nombre de usuario registrado (ej. admin).</span>
+            </span>
+        </label>
+        <input type="text" id="user" placeholder="•••Usuario•••">
+
+        <label>
+            Contraseña:
+            <span class="tooltip-container">
+                ❓
+                <span class="tooltip-text">Ingresa tu clave de acceso segura. Respeta mayúsculas.</span>
+            </span>
+        </label>
+        <input type="password" id="pass" placeholder="•••Contraseña•••">
+
+        <label>
+            Motivo de Ingreso:
+            <span class="tooltip-container">
+                ❓
+                <span class="tooltip-text">Describe brevemente por qué necesitas acceder (ej. Busqueda en el rio Mira).</span>
+            </span>
+        </label>
+        <textarea id="reason" rows="2" placeholder="•••Motivo•••"></textarea>
+
+        <label>
+            Seleccionar Dispositivos a Monitorear:
+            <span class="tooltip-container">
+                ❓
+                <span class="tooltip-text">Marca las casillas de los dispositivos que deseas revisar en esta sesión.</span>
+            </span>
+        </label>
+        <div id="device-container" class="device-list">
+            Cargando dispositivos...
+        </div>
+
+        <p id="error-msg" class="error">Credenciales incorrectas</p>
+        <button id="btn-login">Iniciar Sesión de Monitoreo</button>
+
+        <div class="admin-section">
+            <a id="link-admin" class="admin-link">⚙️ Gestionar Usuarios</a>
+        </div>
+
+        <button id="btn-history" style="background-color: #6c757d; margin-top: 10px;">
+            📜 Ver mis sesiones anteriores
+        </button>
+        
+    </div>
+
+    <div id="modal-pass">
+        <div class="modal-content">
+            <h3>🔐 Acceso Restringido</h3>
+            <p style="font-size:0.9em; color:#666; margin-bottom: 5px;">
+                Ingresa la contraseña:
+                <span class="tooltip-container">
+                    ❓ 
+                    <span class="tooltip-text">Ingresa la contraseña del administrador (admin).</span>
+                </span>
+            </p>
+            <input type="password" id="admin-pass-input" placeholder="••••••">
+            <div class="modal-btns">
+                <button class="btn-cancel" id="btn-cancel-modal">Cancelar</button>
+                <button class="btn-confirm" id="btn-confirm-modal">Entrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scriptConfigFirebase.js"></script>
+    <script src="scriptLogin.js"></script>
+
+</body>
+</html>
